@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedro Carriel — Cloud Technical Consultant</title>
+  <meta name="description" content="Portfólio de Pedro Carriel de Barros, Cloud Technical Consultant. Infraestrutura em nuvem, DevOps, automações, monitoramento e APIs.">
+  <meta name="theme-color" content="#06080b">
+  <meta property="og:title" content="Pedro Carriel — Cloud Technical Consultant">
+  <meta property="og:description" content="Infraestrutura em nuvem, DevOps, automações, monitoramento e APIs. Um portfólio que é um cluster.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306080b'/%3E%3Cpath d='M16 22l10 10-10 10' stroke='%234ff0b4' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='32' y='38' width='16' height='6' rx='3' fill='%234ff0b4'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- boot sequence -->
+  <div id="boot" aria-hidden="true">
+    <pre id="boot-log"></pre>
+    <span class="boot-skip" data-i18n="boot.skip">pressione qualquer tecla para pular</span>
+  </div>
+
+  <!-- tmux-like status bar -->
+  <header class="statusbar" id="statusbar">
+    <a class="sb-brand" href="#home"><span class="sb-diamond">◆</span> pedro<span class="dim">@</span>cluster</a>
+    <nav class="sb-windows" aria-label="sections">
+      <a href="#home" data-win="home"><span class="n">0</span><span data-i18n="nav.home">home</span></a>
+      <a href="#about" data-win="about"><span class="n">1</span>whoami</a>
+      <a href="#pods" data-win="pods"><span class="n">2</span><span data-i18n="nav.pods">projetos</span></a>
+      <a href="#stack" data-win="stack"><span class="n">3</span><span data-i18n="nav.stack">stack</span></a>
+      <a href="#log" data-win="log"><span class="n">4</span><span data-i18n="nav.log">histórico</span></a>
+      <a href="#contact" data-win="contact"><span class="n">5</span><span data-i18n="nav.contact">contato</span></a>
+    </nav>
+    <div class="sb-right">
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="PT / EN">
+        <span data-l="pt">PT</span><span data-l="en">EN</span>
+      </button>
+      <span class="sb-clock" id="clock">--:--</span>
+      <button class="sb-term" id="open-term" type="button">
+        <span class="kbd">⌘K</span><span data-i18n="nav.terminal">terminal</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home" data-section="home">
+      <canvas id="ambient" aria-hidden="true"></canvas>
+      <div class="hero-grid wrap">
+        <div class="hero-copy">
+          <p class="eyebrow mono reveal">
+            <span class="dim">$</span> kubectl config current-context
+            <span class="dim">→</span> <span class="accent">pedro-carriel@prod</span>
+          </p>
+          <h1 class="hero-name reveal">
+            <span class="glitch" data-text="Pedro Carriel">Pedro Carriel</span>
+            <em>de Barros</em>
+          </h1>
+          <p class="hero-role mono reveal"><span class="pulse"></span>Cloud Technical Consultant</p>
+          <p class="hero-pitch reveal" data-i18n="hero.pitch"></p>
+          <div class="hero-cta reveal">
+            <a class="btn btn-primary" href="#pods"><span class="mono dim">./</span><span data-i18n="hero.cta.pods">ver projetos</span></a>
+            <button class="btn btn-ghost" type="button" data-action="focus-term"><span class="kbd">⌘K</span><span data-i18n="hero.cta.term">abrir terminal</span></button>
+          </div>
+          <p class="hero-status mono reveal"><span class="dot-live"></span><span data-i18n="hero.status">disponível para novos projetos</span></p>
+        </div>
+        <div class="hero-term reveal" id="hero-term"></div>
+      </div>
+      <a class="scroll-hint mono" href="#about"><span data-i18n="hero.scroll">role para inspecionar o cluster</span><i></i></a>
+    </section>
+
+    <!-- STATS / ABOUT -->
+    <section class="about wrap" id="about" data-section="about">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="about.kicker">01 · whoami</p>
+      </div>
+      <div class="about-grid">
+        <div class="avatar" id="avatar">
+          <div class="avatar-inner"><span>PC</span></div>
+          <div class="avatar-meta mono">
+            <span>uid=1000(pedro)</span>
+            <span>gid=cloud</span>
+          </div>
+        </div>
+        <p class="about-text" id="about-text"></p>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <!-- PODS -->
+    <section class="pods wrap" id="pods" data-section="pods">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="pods.kicker">02 · workloads</p>
+        <h2><span data-i18n="pods.title">Projetos</span> <em data-i18n="pods.title.em">em produção</em></h2>
+        <p class="lead" data-i18n="pods.lead"></p>
+      </div>
+      <div class="pods-cmd mono">
+        <span class="dim">$</span> kubectl get pods <span id="ns-flag" class="accent">-A</span>
+      </div>
+      <div class="pods-toolbar">
+        <div class="ns-filters" id="ns-filters" role="tablist"></div>
+        <div class="view-toggle" role="tablist">
+          <button type="button" class="active" data-view="grid" data-i18n="pods.view.grid">grade</button>
+          <button type="button" data-view="topo" data-i18n="pods.view.topo">topologia</button>
+        </div>
+      </div>
+      <div class="pods-grid" id="pods-grid"></div>
+      <div class="topo" id="topo" hidden>
+        <canvas id="topo-canvas"></canvas>
+        <p class="topo-hint mono" data-i18n="pods.topo.hint"></p>
+      </div>
+    </section>
+
+    <!-- STACK -->
+    <section class="stack wrap" id="stack" data-section="stack">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="stack.kicker">03 · capacidade</p>
+        <h2><span data-i18n="stack.title">Stack</span> <em data-i18n="stack.title.em">instalada</em></h2>
+        <p class="lead" data-i18n="stack.lead"></p>
+      </div>
+      <div class="stack-grid">
+        <div class="code-window">
+          <div class="cw-bar mono"><span class="lights"><i></i><i></i><i></i></span><span>~/stack.yaml</span></div>
+          <pre class="yaml" id="yaml"></pre>
+        </div>
+        <aside class="stack-peek" id="stack-peek">
+          <p class="mono dim" id="peek-label">// hover</p>
+          <h3 id="peek-title">—</h3>
+          <ul id="peek-list"></ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- GIT LOG -->
+    <section class="log wrap" id="log" data-section="log">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="log.kicker">04 · git log</p>
+        <h2><span data-i18n="log.title">Histórico</span> <em data-i18n="log.title.em">de commits</em></h2>
+        <p class="lead" data-i18n="log.lead"></p>
+      </div>
+      <div class="pods-cmd mono"><span class="dim">$</span> git log --graph --oneline --all</div>
+      <ol class="gitlog" id="gitlog"></ol>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact wrap" id="contact" data-section="contact">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="contact.kicker">05 · ssh</p>
+        <h2 class="contact-title"><span data-i18n="contact.title">Vamos</span> <em data-i18n="contact.title.em">conversar?</em></h2>
+        <p class="lead" data-i18n="contact.lead"></p>
+      </div>
+      <div class="contact-grid" id="contact-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap mono">
+    <span>© <span id="year"></span> Pedro Carriel de Barros</span>
+    <span class="dim" data-i18n="footer.made"></span>
+    <span class="dim"><span data-i18n="footer.hint">dica: aperte</span> <span class="kbd">⌘K</span> <span data-i18n="footer.hint2">em qualquer lugar</span></span>
+  </footer>
+
+  <!-- describe drawer -->
+  <div class="scrim" id="scrim" hidden></div>
+  <aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-bar mono">
+      <span><span class="dim">$</span> kubectl describe pod <span id="drawer-cmd" class="accent"></span></span>
+      <button type="button" class="drawer-close" id="drawer-close"><span data-i18n="drawer.close">fechar</span> <span class="kbd">esc</span></button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+
+  <!-- floating terminal -->
+  <div class="term-overlay" id="term-overlay" hidden>
+    <div class="term-overlay-inner" id="overlay-term"></div>
+  </div>
+
+  <div class="toast mono" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/data/profile.js"></script>
+  <script src="js/data/projects.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/cluster.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
