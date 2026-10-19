@@ -17,7 +17,7 @@ window.PROFILE = {
   linkedin: "https://www.linkedin.com/in/pedrocarriel/",
   email: "carriel05@proton.me",
   photo: null,
-  resume: null,
+  resume: "assets/Curriculo-Pedro-Carriel.pdf",
   careerStart: "2023-07-01",
 
   languages: {
