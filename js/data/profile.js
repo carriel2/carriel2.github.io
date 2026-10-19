@@ -16,7 +16,7 @@ window.PROFILE = {
   github: "carriel2",
   linkedin: "https://www.linkedin.com/in/pedrocarriel/",
   email: "carriel05@proton.me",
-  photo: null,
+  photo: "assets/photo.jpg",
   resume: "assets/Curriculo-Pedro-Carriel.pdf",
   careerStart: "2023-07-01",
 
