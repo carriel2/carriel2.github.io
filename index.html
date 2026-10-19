@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pedro Carriel — Cloud Technical Consultant</title>
-  <meta name="description" content="Portfólio de Pedro Carriel de Barros, Cloud Technical Consultant. Infraestrutura em nuvem, DevOps, automações, monitoramento e APIs.">
+  <meta name="description" content="Portfólio de Pedro Carriel de Barros, Cloud Technical Consultant. Pré-vendas técnica, arquiteturas IaaS e PaaS, migrações, FinOps, Kubernetes, automações e APIs.">
   <meta name="theme-color" content="#06080b">
   <meta property="og:title" content="Pedro Carriel — Cloud Technical Consultant">
   <meta property="og:description" content="Infraestrutura em nuvem, DevOps, automações, monitoramento e APIs. Um portfólio que é um cluster.">
@@ -28,10 +28,11 @@
     <nav class="sb-windows" aria-label="sections">
       <a href="#home" data-win="home"><span class="n">0</span><span data-i18n="nav.home">home</span></a>
       <a href="#about" data-win="about"><span class="n">1</span>whoami</a>
-      <a href="#pods" data-win="pods"><span class="n">2</span><span data-i18n="nav.pods">projetos</span></a>
-      <a href="#stack" data-win="stack"><span class="n">3</span><span data-i18n="nav.stack">stack</span></a>
-      <a href="#log" data-win="log"><span class="n">4</span><span data-i18n="nav.log">histórico</span></a>
-      <a href="#contact" data-win="contact"><span class="n">5</span><span data-i18n="nav.contact">contato</span></a>
+      <a href="#experience" data-win="experience"><span class="n">2</span><span data-i18n="nav.exp">carreira</span></a>
+      <a href="#pods" data-win="pods"><span class="n">3</span><span data-i18n="nav.pods">projetos</span></a>
+      <a href="#stack" data-win="stack"><span class="n">4</span><span data-i18n="nav.stack">stack</span></a>
+      <a href="#log" data-win="log"><span class="n">5</span><span data-i18n="nav.log">histórico</span></a>
+      <a href="#contact" data-win="contact"><span class="n">6</span><span data-i18n="nav.contact">contato</span></a>
     </nav>
     <div class="sb-right">
       <button class="lang-toggle" id="lang-toggle" type="button" aria-label="PT / EN">
@@ -59,6 +60,7 @@
             <em>de Barros</em>
           </h1>
           <p class="hero-role mono reveal"><span class="pulse"></span>Cloud Technical Consultant</p>
+          <p class="hero-headline mono reveal" id="hero-headline"></p>
           <p class="hero-pitch reveal" data-i18n="hero.pitch"></p>
           <div class="hero-cta reveal">
             <a class="btn btn-primary" href="#pods"><span class="mono dim">./</span><span data-i18n="hero.cta.pods">ver projetos</span></a>
@@ -84,15 +86,34 @@
             <span>gid=cloud</span>
           </div>
         </div>
-        <p class="about-text" id="about-text"></p>
+        <div>
+          <p class="about-text" id="about-text"></p>
+          <p class="about-meta mono" id="about-meta"></p>
+        </div>
       </div>
       <div class="stats" id="stats"></div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience wrap" id="experience" data-section="experience">
+      <div class="section-head">
+        <p class="kicker mono" data-i18n="exp.kicker">02 · rollout</p>
+        <h2><span data-i18n="exp.title">Carreira</span> <em data-i18n="exp.title.em">em deploy contínuo</em></h2>
+        <p class="lead" data-i18n="exp.lead"></p>
+      </div>
+      <div class="pods-cmd mono exp-cmd">
+        <span><span class="dim">$</span> kubectl rollout history deployment/pedro-carriel</span>
+        <a class="btn btn-ghost btn-sm" id="resume-btn" href="#" target="_blank" rel="noopener" hidden><span data-i18n="exp.resume">baixar currículo</span> ↓</a>
+      </div>
+      <ol class="rollout" id="rollout"></ol>
+      <h3 class="edu-title mono"><span class="dim">#</span> <span data-i18n="exp.edu">formação</span></h3>
+      <div class="edu" id="edu"></div>
     </section>
 
     <!-- PODS -->
     <section class="pods wrap" id="pods" data-section="pods">
       <div class="section-head">
-        <p class="kicker mono" data-i18n="pods.kicker">02 · workloads</p>
+        <p class="kicker mono" data-i18n="pods.kicker">03 · workloads</p>
         <h2><span data-i18n="pods.title">Projetos</span> <em data-i18n="pods.title.em">em produção</em></h2>
         <p class="lead" data-i18n="pods.lead"></p>
       </div>
@@ -116,7 +137,7 @@
     <!-- STACK -->
     <section class="stack wrap" id="stack" data-section="stack">
       <div class="section-head">
-        <p class="kicker mono" data-i18n="stack.kicker">03 · capacidade</p>
+        <p class="kicker mono" data-i18n="stack.kicker">04 · capacidade</p>
         <h2><span data-i18n="stack.title">Stack</span> <em data-i18n="stack.title.em">instalada</em></h2>
         <p class="lead" data-i18n="stack.lead"></p>
       </div>
@@ -136,7 +157,7 @@
     <!-- GIT LOG -->
     <section class="log wrap" id="log" data-section="log">
       <div class="section-head">
-        <p class="kicker mono" data-i18n="log.kicker">04 · git log</p>
+        <p class="kicker mono" data-i18n="log.kicker">05 · git log</p>
         <h2><span data-i18n="log.title">Histórico</span> <em data-i18n="log.title.em">de commits</em></h2>
         <p class="lead" data-i18n="log.lead"></p>
       </div>
@@ -147,7 +168,7 @@
     <!-- CONTACT -->
     <section class="contact wrap" id="contact" data-section="contact">
       <div class="section-head">
-        <p class="kicker mono" data-i18n="contact.kicker">05 · ssh</p>
+        <p class="kicker mono" data-i18n="contact.kicker">06 · ssh</p>
         <h2 class="contact-title"><span data-i18n="contact.title">Vamos</span> <em data-i18n="contact.title.em">conversar?</em></h2>
         <p class="lead" data-i18n="contact.lead"></p>
       </div>
@@ -181,6 +202,7 @@
   <script src="js/i18n.js"></script>
   <script src="js/data/profile.js"></script>
   <script src="js/data/projects.js"></script>
+  <script src="js/data/career.js"></script>
   <script src="js/util.js"></script>
   <script src="js/cluster.js"></script>
   <script src="js/terminal.js"></script>

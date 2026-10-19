@@ -16,7 +16,7 @@
     "╚═╝      ╚═════╝"
   ].join("\n");
 
-  const SECTIONS = ["home", "about", "pods", "stack", "log", "contact"];
+  const SECTIONS = ["home", "about", "experience", "pods", "stack", "log", "contact"];
   const link = (cmd, label) => `<span class="cmd-link" data-cmd="${esc(cmd)}">${esc(label ?? cmd)}</span>`;
 
   class Terminal {
@@ -97,7 +97,7 @@
     }
 
     renderChips() {
-      const chips = ["help", "whoami", "kubectl get pods", "stack", "contact", "sudo hire-me"];
+      const chips = ["help", "whoami", "experience", "kubectl get pods", "stack", "contact", "sudo hire-me"];
       this.chips.innerHTML = chips.map((c) => `<button type="button" data-cmd="${c}">${c}</button>`).join("");
     }
 
@@ -162,7 +162,7 @@
         if (prev === "-n") pool = Object.keys(NAMESPACES);
         else if (["cd", "goto"].includes(parts[0])) pool = SECTIONS;
         else if (parts[0] === "lang") pool = ["pt", "en"];
-        else if (parts[0] === "kubectl" && parts.length === 2) pool = ["get", "describe", "logs", "top"];
+        else if (parts[0] === "kubectl" && parts.length === 2) pool = ["get", "describe", "logs", "top", "rollout"];
         else if (parts[0] === "kubectl" && parts[1] === "get" && parts.length === 3) pool = ["pods", "ns", "nodes"];
         else if (parts[0] === "kubectl" && parts[1] === "describe" && parts.length === 3) pool = ["pod"];
         else pool = P().map((p) => p.id);
@@ -239,6 +239,8 @@
             const rows = [
               ["whoami", "whoami", { pt: "quem sou eu", en: "who am I" }],
               ["neofetch", "neofetch", { pt: "resumo do sistema", en: "system summary" }],
+              ["experience", "experience", { pt: "carreira e cargos", en: "career and roles" }],
+              ["education", "education", { pt: "formação", en: "education" }],
               ["ls", "ls", { pt: "lista os projetos", en: "list projects" }],
               ["kubectl get pods [-n ns]", "kubectl get pods", { pt: "projetos em formato cluster", en: "projects, cluster style" }],
               ["kubectl get ns", "kubectl get ns", { pt: "namespaces (categorias)", en: "namespaces (categories)" }],
@@ -260,19 +262,24 @@
           fn() {
             self.lines([
               `<span class="c-bold">${esc(PROFILE.fullName)}</span> <span class="c-d">—</span> <span class="c-a">${esc(PROFILE.role)}</span>`,
-              `<span class="c-m">${esc(L(PROFILE.about))}</span>`
+              `<span class="c-c">${esc(L(PROFILE.headline))}</span>`,
+              `<span class="c-m">${esc(L(PROFILE.about))}</span>`,
+              `<span class="c-d">loc  </span>${esc(PROFILE.location)}`,
+              ...L(PROFILE.languages).map(([l, v]) => `<span class="c-d">lang </span>${esc(l)} <span class="c-d">— ${esc(v)}</span>`),
+              `<span class="c-d">→ </span>${link("experience")}  ${link("education")}${PROFILE.resume ? "  " + link("resume") : ""}`
             ]);
           }
         },
         neofetch: {
           fn() {
-            const years = ((Date.now() - new Date(`${PROFILE.since}-01-01`)) / 31557600000).toFixed(1);
+            const years = ((Date.now() - new Date(PROFILE.careerStart)) / 31557600000).toFixed(1);
             const langs = [...new Set(P().flatMap((p) => Object.keys(p.langs)))].filter((l) => !["Dockerfile", "HTML", "CSS", "Swift", "Kotlin", "PLpgSQL"].includes(l));
             const info = [
               `<span class="c-a">pedro</span>@<span class="c-b">cluster</span>`,
               `<span class="c-d">────────────────</span>`,
               `<span class="c-a">OS</span>       ${esc(PROFILE.role)}`,
-              `<span class="c-a">Host</span>     github.com/${esc(PROFILE.github)}`,
+              `<span class="c-a">Host</span>     ${esc(CAREER[0].company)}`,
+              `<span class="c-a">Impact</span>   +100 ${L({ pt: "migrações", en: "migrations" })} · -30% ${L({ pt: "custo", en: "cost" })} · +3000 ${L({ pt: "clientes", en: "customers" })}`,
               `<span class="c-a">Uptime</span>   ${years} ${L({ pt: "anos em produção", en: "years in production" })}`,
               `<span class="c-a">Pods</span>     ${P().length} ${L({ pt: "projetos", en: "projects" })} · ${Object.keys(NAMESPACES).length} namespaces`,
               `<span class="c-a">Langs</span>    ${langs.slice(0, 5).join(", ")}`,
@@ -312,6 +319,7 @@
             if (verb === "describe") return describe(what === "pod" || what === "po" ? rest[0] : what);
             if (verb === "logs") return C.logs.fn([what]);
             if (verb === "top") return C.stack.fn();
+            if (verb === "rollout") return C.experience.fn();
             self.lines([
               `<span class="c-m">kubectl ${L({ pt: "suportado aqui", en: "supported here" })}:</span>`,
               `  ${link("kubectl get pods")}   ${link("kubectl get ns")}   ${link("kubectl get nodes")}`,
@@ -342,6 +350,32 @@
             app && app.openProject(p);
           }
         },
+        experience: {
+          fn() {
+            self.print(`<span class="c-d">deployment.apps/pedro-carriel</span>`);
+            self.print(`<span class="c-d">${pad("REVISION", 10)}${pad("PERIOD", 22)}CHANGE-CAUSE</span>`);
+            CAREER.forEach((j, i) => {
+              const role = typeof j.role === "string" ? j.role : L(j.role);
+              const per = `${j.start} → ${j.end || L({ pt: "atual", en: "now" })}`;
+              self.print(`<span class="${j.end ? "c-m" : "c-a"}">${pad(CAREER.length - i, 10)}</span>${pad(per, 22)}<span class="c-bold">${esc(role)}</span> <span class="c-d">@</span> ${esc(j.company)}${j.badge ? ` <span class="c-y">↑ ${esc(L(j.badge))}</span>` : ""}`);
+            });
+            self.print("");
+            L(CAREER[0].bullets).forEach((b) => self.print(`<span class="c-a">▸</span> ${esc(b)}`));
+            self.print(`<span class="c-d">→ </span>${link("cd experience", L({ pt: "ver carreira completa", en: "see full career" }))}`);
+          }
+        },
+        education: {
+          fn() {
+            EDUCATION.forEach((e) => self.print(`<span class="c-b">${e.start}–${e.end}</span>  <span class="c-bold">${esc(L(e.course))}</span> <span class="c-d">·</span> ${esc(e.school)}`));
+          }
+        },
+        resume: {
+          fn() {
+            if (!PROFILE.resume) { self.print(`<span class="c-m">${L({ pt: "currículo sob consulta:", en: "résumé on request:" })}</span> <a href="mailto:${PROFILE.email}">${esc(PROFILE.email)}</a>`); return; }
+            window.open(PROFILE.resume, "_blank", "noopener");
+            self.print(`<span class="c-a">✓</span> ${L({ pt: "abrindo currículo (PDF)…", en: "opening résumé (PDF)…" })}`);
+          }
+        },
         stack: {
           fn() {
             Object.entries(PROFILE.stack).forEach(([k, v]) => {
@@ -364,7 +398,7 @@
         github: { hidden: true, fn: () => { window.open(`https://github.com/${PROFILE.github}`, "_blank", "noopener"); self.print(`<span class="c-a">✓</span> github.com/${esc(PROFILE.github)}`); } },
         cd: {
           fn(a) {
-            const map = { projects: "pods", projetos: "pods", whoami: "about", sobre: "about", contato: "contact", historico: "log", history: "log", "~": "home", "/": "home" };
+            const map = { projects: "pods", projetos: "pods", whoami: "about", sobre: "about", contato: "contact", historico: "log", history: "log", carreira: "experience", career: "experience", "~": "home", "/": "home" };
             const s = map[a[0]] || a[0] || "home";
             if (!SECTIONS.includes(s)) { self.print(`<span class="c-r">cd:</span> no such file or directory: ${esc(a[0])}`); self.print(`<span class="c-d">${SECTIONS.join("  ")}</span>`); return; }
             app && app.scrollTo(s);
@@ -418,6 +452,10 @@
       C.projetos = { hidden: true, fn: () => C.ls.fn([]) };
       C.projects = { hidden: true, fn: () => C.ls.fn([]) };
       C.contato = { hidden: true, fn: () => C.contact.fn() };
+      C.cv = { hidden: true, fn: () => C.resume.fn() };
+      C.curriculo = { hidden: true, fn: () => C.resume.fn() };
+      C.carreira = { hidden: true, fn: () => C.experience.fn() };
+      C.formacao = { hidden: true, fn: () => C.education.fn() };
       C.k = { hidden: true, fn: (a) => C.kubectl.fn(a) };
       return C;
     }

@@ -1,6 +1,13 @@
 (function () {
   const STRINGS = {
     pt: {
+      "nav.exp": "carreira",
+      "exp.kicker": "02 · rollout",
+      "exp.title": "Carreira",
+      "exp.title.em": "em deploy contínuo",
+      "exp.lead": "Cada cargo é uma revisão do mesmo deployment: do código Python ao suporte, e do suporte à arquitetura e pré-vendas.",
+      "exp.resume": "baixar currículo",
+      "exp.edu": "formação",
       "nav.home": "home",
       "nav.pods": "projetos",
       "nav.stack": "stack",
@@ -11,7 +18,7 @@
       "boot.skip": "pressione qualquer tecla para pular",
 
       "hero.context": "contexto atual",
-      "hero.pitch": "Eu desenho, automatizo e coloco no ar infraestrutura em nuvem: de pipelines zero-touch e deploys em PaaS a monitores, APIs e automações que viram rotina de times inteiros.",
+      "hero.pitch": "Transformo requisitos de negócio em arquiteturas IaaS e PaaS escaláveis, seguras e com custo otimizado. E construo as ferramentas que deixam a operação rodando sozinha: monitores, pipelines, APIs e automações.",
       "hero.cta.pods": "ver projetos",
       "hero.cta.term": "abrir terminal",
       "hero.status": "disponível para novos projetos",
@@ -22,7 +29,7 @@
       "stats.langs": "linguagens",
       "stats.since": "commitando desde",
 
-      "pods.kicker": "02 · workloads",
+      "pods.kicker": "03 · workloads",
       "pods.title": "Projetos",
       "pods.title.em": "em produção",
       "pods.lead": "Cada projeto é um pod no meu cluster. Filtre por namespace, alterne para a topologia e clique em qualquer um para ver o describe completo.",
@@ -36,7 +43,7 @@
       "pods.updated": "push",
       "pods.inspect": "inspecionar",
 
-      "stack.kicker": "03 · capacidade",
+      "stack.kicker": "04 · capacidade",
       "stack.title": "Stack",
       "stack.title.em": "instalada",
       "stack.lead": "O que eu uso no dia a dia, declarado como manifesto. Passe o mouse num item para ver em quais projetos ele roda.",
@@ -45,12 +52,12 @@
 
       "about.kicker": "01 · whoami",
 
-      "log.kicker": "04 · git log",
+      "log.kicker": "05 · git log",
       "log.title": "Histórico",
       "log.title.em": "de commits",
       "log.lead": "A linha do tempo dos projetos, do mais recente ao primeiro.",
 
-      "contact.kicker": "05 · ssh",
+      "contact.kicker": "06 · ssh",
       "contact.title": "Vamos",
       "contact.title.em": "conversar?",
       "contact.lead": "Consultoria em nuvem, automação, um projeto novo ou só trocar ideia sobre infraestrutura. Minha caixa de entrada está sempre aberta.",
@@ -83,6 +90,13 @@
     },
 
     en: {
+      "nav.exp": "career",
+      "exp.kicker": "02 · rollout",
+      "exp.title": "Career",
+      "exp.title.em": "on continuous deploy",
+      "exp.lead": "Each role is a revision of the same deployment: from Python code to support, and from support to architecture and pre-sales.",
+      "exp.resume": "download résumé",
+      "exp.edu": "education",
       "nav.home": "home",
       "nav.pods": "projects",
       "nav.stack": "stack",
@@ -93,7 +107,7 @@
       "boot.skip": "press any key to skip",
 
       "hero.context": "current context",
-      "hero.pitch": "I design, automate and ship cloud infrastructure: from zero-touch pipelines and PaaS deployments to monitors, APIs and automations that whole teams rely on every day.",
+      "hero.pitch": "I turn business requirements into scalable, secure, cost-optimized IaaS and PaaS architectures. And I build the tools that keep operations running on their own: monitors, pipelines, APIs and automations.",
       "hero.cta.pods": "see projects",
       "hero.cta.term": "open terminal",
       "hero.status": "available for new projects",
@@ -104,7 +118,7 @@
       "stats.langs": "languages",
       "stats.since": "committing since",
 
-      "pods.kicker": "02 · workloads",
+      "pods.kicker": "03 · workloads",
       "pods.title": "Projects",
       "pods.title.em": "in production",
       "pods.lead": "Every project is a pod in my cluster. Filter by namespace, switch to the topology view and click any of them for the full describe.",
@@ -118,7 +132,7 @@
       "pods.updated": "push",
       "pods.inspect": "inspect",
 
-      "stack.kicker": "03 · capacity",
+      "stack.kicker": "04 · capacity",
       "stack.title": "Installed",
       "stack.title.em": "stack",
       "stack.lead": "What I use day to day, declared as a manifest. Hover an item to see which projects it runs in.",
@@ -127,12 +141,12 @@
 
       "about.kicker": "01 · whoami",
 
-      "log.kicker": "04 · git log",
+      "log.kicker": "05 · git log",
       "log.title": "Commit",
       "log.title.em": "history",
       "log.lead": "The project timeline, from the latest to the very first.",
 
-      "contact.kicker": "05 · ssh",
+      "contact.kicker": "06 · ssh",
       "contact.title": "Let's",
       "contact.title.em": "talk.",
       "contact.lead": "Cloud consulting, automation, a new project or just a chat about infrastructure. My inbox is always open.",

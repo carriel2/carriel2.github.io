@@ -45,9 +45,14 @@ gh api repos/carriel2/NOME --jq '{created_at, pushed_at}'
 
 Pra criar um namespace novo, adicione em `window.NAMESPACES` no mesmo arquivo.
 
+## Carreira e formação
+
+Em [`js/data/career.js`](js/data/career.js): cargos (`CAREER`), formação (`EDUCATION`) e os números de impacto (`IMPACT`).
+
 ## Dados pessoais e foto
 
 Em [`js/data/profile.js`](js/data/profile.js): nome, cargo, links, texto do "whoami" e a stack.
+Para o botão de currículo, salve o PDF em `assets/` e aponte `resume` para ele.
 Para a foto, salve `assets/photo.jpg` e troque `photo: null` por `photo: "assets/photo.jpg"`.
 
 ## Rodar localmente

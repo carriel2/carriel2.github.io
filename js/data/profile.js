@@ -1,32 +1,45 @@
 /*
  * Seus dados pessoais. Edite à vontade.
  * Foto: salve em assets/photo.jpg e troque `photo` para "assets/photo.jpg".
+ * Currículo: salve o PDF em assets/ e aponte `resume` para ele (null = sem botão).
  */
 window.PROFILE = {
   name: "Pedro Carriel",
   surname: "de Barros",
   fullName: "Pedro Carriel de Barros",
   role: "Cloud Technical Consultant",
+  headline: {
+    pt: "Pré-vendas técnica · Kubernetes · OpenStack · Linux · Terraform · FinOps",
+    en: "Technical pre-sales · Kubernetes · OpenStack · Linux · Terraform · FinOps"
+  },
+  location: "Santa Bárbara d'Oeste · SP · Brasil",
   github: "carriel2",
   linkedin: "https://www.linkedin.com/in/pedrocarriel/",
   email: "carriel05@proton.me",
   photo: null,
-  since: 2024,
+  resume: null,
+  careerStart: "2023-07-01",
+
+  languages: {
+    pt: [["Português", "nativo"], ["Inglês", "intermediário · leitura técnica fluente"]],
+    en: [["Portuguese", "native"], ["English", "intermediate · fluent technical reading"]]
+  },
 
   about: {
-    pt: "Sou Cloud Technical Consultant e trabalho onde a infraestrutura encontra o negócio: ajudo empresas a colocar aplicações na nuvem e construo as ferramentas que deixam a operação mais rápida — monitores, coletores de billing, pipelines de deploy e automações comerciais. Gosto de Python, de containers e de transformar processo manual em algo que roda sozinho às 5 da manhã.",
-    en: "I'm a Cloud Technical Consultant working where infrastructure meets business: I help companies run their applications in the cloud and build the tools that make operations faster — monitors, billing collectors, deploy pipelines and sales automations. I like Python, containers, and turning manual processes into something that runs by itself at 5 a.m."
+    pt: "Sou consultor técnico de cloud e transformo requisitos de negócio em arquiteturas IaaS e PaaS escaláveis, seguras e com custo otimizado. Atuo em pré-vendas técnica para CTOs, Diretores de TI e Tech Leads, e na base de clientes com migrações, alta disponibilidade e FinOps. Vim do desenvolvimento Python, passei por suporte e infraestrutura, e hoje tenho visão ponta a ponta: do código ao usuário.",
+    en: "I'm a cloud technical consultant who turns business requirements into scalable, secure and cost-optimized IaaS and PaaS architectures. I do technical pre-sales for CTOs, IT Directors and Tech Leads, and work with existing customers on migrations, high availability and FinOps. I started in Python development, went through support and infrastructure, and now see the whole picture: from code to user."
   },
 
   // Aparece como stack.yaml. Chave = grupo, valor = lista.
   stack: {
-    cloud: ["Jelastic / Virtuozzo PaaS", "SaveInCloud", "Linux", "Arch Linux (archiso)"],
-    containers: ["Docker", "Docker Compose", "Docker Swarm", "Multi-stage builds"],
-    cicd: ["GitHub Actions", "IaC (JPS manifests)", "Zero-touch deploy"],
-    observability: ["Grafana", "Prometheus", "TimescaleDB"],
-    languages: ["Python", "JavaScript", "TypeScript", "Dart", "Java", "SQL"],
-    frameworks: ["FastAPI", "Django / DRF", "Streamlit", "Flutter", "Next.js", "SQLAlchemy"],
-    data: ["PostgreSQL", "Oracle", "Pandas", "Plotly", "Google Sheets API"],
-    automation: ["Cron / schedulers", "SMTP reports", "REST integrations", "Google Maps API"]
+    cloud: ["Virtuozzo / Jelastic", "PaaS", "IaaS", "OpenStack", "KVM", "Multicloud"],
+    containers: ["Kubernetes", "Docker", "Docker Compose", "Docker Swarm", "Microservices"],
+    iac: ["Terraform", "GitHub Actions", "JPS manifests", "Git"],
+    os: ["RHEL", "Debian", "Ubuntu", "CentOS", "AlmaLinux", "Arch Linux", "Windows Server"],
+    network: ["Routing", "VPN", "Segmentation", "Firewalls", "HAProxy", "Nginx", "Reverse proxy"],
+    observability: ["Prometheus", "Grafana", "Uptime Kuma", "TimescaleDB"],
+    development: ["Python", "FastAPI", "Django", "REST APIs", "Streamlit", "Flutter", "Next.js"],
+    data: ["PostgreSQL", "Oracle", "SQLAlchemy", "Pandas", "Google Sheets API"],
+    business: ["High availability", "Disaster recovery", "Capacity planning", "FinOps", "Pre-sales"]
   }
 };

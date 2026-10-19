@@ -50,36 +50,88 @@
   /* ───────────── about + stats ───────────── */
   function renderAbout() {
     // highlight a few keywords with the serif accent
-    const marks = { pt: ["infraestrutura", "nuvem", "5 da manhã"], en: ["infrastructure", "cloud", "5 a.m."] };
+    const marks = { pt: ["IaaS e PaaS", "FinOps", "do código ao usuário"], en: ["IaaS and PaaS", "FinOps", "from code to user"] };
     let html = esc(L(PROFILE.about));
     marks[I18N.lang].forEach((m) => { html = html.replace(m, `<mark>${m}</mark>`); });
     $("#about-text").innerHTML = html;
 
+    $("#hero-headline").textContent = L(PROFILE.headline);
+
+    $("#about-meta").innerHTML = [
+      ["loc", PROFILE.location],
+      ...L(PROFILE.languages).map(([l, lvl]) => ["lang", `${l} — ${lvl}`])
+    ].map(([k, v]) => `<span><span class="dim">${k}</span> ${esc(v)}</span>`).join("");
+
     if (PROFILE.photo) $("#avatar .avatar-inner").innerHTML = `<img src="${esc(PROFILE.photo)}" alt="${esc(PROFILE.fullName)}">`;
 
-    const langs = new Set(U.projects.flatMap((p) => Object.keys(p.langs)).filter((l) => l !== "Dockerfile"));
-    const stats = [
-      [U.projects.length, "stats.pods"],
-      [Object.keys(NAMESPACES).length, "stats.ns"],
-      [langs.size, "stats.langs"],
-      [PROFILE.since, "stats.since"]
-    ];
-    $("#stats").innerHTML = stats.map(([n, k]) => `<div class="stat"><b data-count="${n}">${n}</b><span>${esc(I18N.t(k))}</span></div>`).join("");
+    $("#stats").innerHTML = IMPACT.map((s) => {
+      const n = s.value === "projects" ? U.projects.length : s.value;
+      return `<div class="stat"><b data-count="${n}" data-prefix="${s.prefix || ""}" data-suffix="${s.suffix || ""}">${s.prefix || ""}${n}${s.suffix || ""}</b><span>${esc(L(s.label))}</span></div>`;
+    }).join("");
   }
 
   function countUp() {
     $$("#stats b[data-count]").forEach((b) => {
       const target = +b.dataset.count;
+      const { prefix, suffix } = b.dataset;
       if (reduced) return;
-      const from = target > 1000 ? target - 12 : 0;
       const t0 = performance.now();
       const step = (t) => {
-        const k = Math.min(1, (t - t0) / 1200);
-        b.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - k, 3)));
+        const k = Math.min(1, (t - t0) / 1400);
+        b.textContent = prefix + Math.round(target * (1 - Math.pow(1 - k, 3))) + suffix;
         if (k < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
     });
+  }
+
+  /* ───────────── experience ───────────── */
+  const ym = (s) => {
+    if (!s) return I18N.lang === "pt" ? "atual" : "present";
+    const [y, m] = s.split("-");
+    return new Date(+y, +m - 1, 1).toLocaleDateString(I18N.lang === "pt" ? "pt-BR" : "en-US", { month: "short", year: "numeric" }).replace(" de ", " ").replace(".", "");
+  };
+  const span = (a, b) => {
+    const [y1, m1] = a.split("-").map(Number);
+    const now = new Date();
+    const [y2, m2] = b ? b.split("-").map(Number) : [now.getFullYear(), now.getMonth() + 1];
+    const months = Math.max(1, (y2 - y1) * 12 + (m2 - m1));
+    const y = Math.floor(months / 12), m = months % 12;
+    const pt = I18N.lang === "pt";
+    return [y ? `${y} ${pt ? (y > 1 ? "anos" : "ano") : y > 1 ? "yrs" : "yr"}` : "", m ? `${m} ${pt ? (m > 1 ? "meses" : "mês") : "mo"}` : ""].filter(Boolean).join(" ");
+  };
+
+  function renderExperience() {
+    const total = CAREER.length;
+    $("#rollout").innerHTML = CAREER.map((j, i) => {
+      const rev = total - i;
+      const current = !j.end;
+      return `
+      <li class="rev ${current ? "current" : ""}">
+        <div class="rev-rail mono"><span class="rev-n">rev ${rev}</span>${current ? `<span class="rev-live"><i></i>live</span>` : ""}</div>
+        <div class="rev-card">
+          <div class="rev-head">
+            <div>
+              <h3>${esc(typeof j.role === "string" ? j.role : L(j.role))}</h3>
+              <p class="rev-co">${esc(j.company)}${j.badge ? ` <span class="rev-badge">↑ ${esc(L(j.badge))}</span>` : ""}</p>
+            </div>
+            <p class="rev-when mono">${ym(j.start)} → ${ym(j.end)}<br><span class="dim">${span(j.start, j.end)}</span></p>
+          </div>
+          <ul class="rev-list">${L(j.bullets).map((b) => `<li>${esc(b)}</li>`).join("")}</ul>
+          <div class="tags">${j.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+        </div>
+      </li>`;
+    }).join("");
+
+    $("#edu").innerHTML = EDUCATION.map((e) => `
+      <div class="edu-item">
+        <span class="mono dim">initContainer · ${esc(e.start)}–${esc(e.end)}</span>
+        <h4>${esc(L(e.course))}</h4>
+        <p>${esc(e.school)}${e.note ? ` <span class="dim">· ${esc(L(e.note))}</span>` : ""}</p>
+      </div>`).join("");
+
+    const r = $("#resume-btn");
+    if (PROFILE.resume) { r.hidden = false; r.href = PROFILE.resume; }
   }
 
   /* ───────────── pods ───────────── */
@@ -312,7 +364,7 @@
     const rv = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); rv.unobserve(e.target); } });
     }, { threshold: 0.12 });
-    $$(".section-head, .about-grid, .stats, .pods-toolbar, .code-window, .gitlog, .contact-grid").forEach((el) => { el.classList.add("reveal"); rv.observe(el); });
+    $$(".section-head, .about-grid, .stats, .rollout, .edu, .pods-toolbar, .code-window, .gitlog, .contact-grid").forEach((el) => { el.classList.add("reveal"); rv.observe(el); });
 
     const st = new IntersectionObserver(([e]) => { if (e.isIntersecting) { countUp(); st.disconnect(); } }, { threshold: 0.5 });
     st.observe($("#stats"));
@@ -336,6 +388,7 @@
   function rerenderAll() {
     I18N.apply();
     renderAbout();
+    renderExperience();
     renderFilters();
     renderPods(false);
     renderLog();
@@ -423,6 +476,7 @@
     $("#year").textContent = new Date().getFullYear();
     I18N.apply();
     renderAbout();
+    renderExperience();
     renderFilters();
     renderPods(false);
     renderYaml();
