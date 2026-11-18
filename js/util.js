@@ -2,7 +2,8 @@
   const LANG_COLORS = {
     Python: "#5b9bd5", JavaScript: "#f1e05a", TypeScript: "#4d8fe0", HTML: "#f0743e", CSS: "#a782ff",
     Dockerfile: "#5fb8d6", Dart: "#18c6bb", Java: "#d18b3a", PLpgSQL: "#7aa6e0", Swift: "#f2704a",
-    Kotlin: "#b98cff", Shell: "#89e051", C: "#8f9bab", "C++": "#f34b7d", Go: "#00add8", Rust: "#dea584"
+    Kotlin: "#b98cff", Shell: "#89e051", C: "#8f9bab", "C++": "#f34b7d", Go: "#00add8", Rust: "#dea584",
+    HCL: "#844fba"
   };
 
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

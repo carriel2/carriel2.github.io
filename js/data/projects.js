@@ -26,6 +26,40 @@ window.NAMESPACES = {
 
 window.PROJECTS = [
   {
+    repo: "platform-gitops",
+    title: "gitops-platform",
+    private: true,
+    featured: true,
+    ns: "infra",
+    created: "2026-11-09",
+    pushed: "2026-11-13",
+    // platform-gitops (infra e manifests) + platform-app (app e pipeline de imagem)
+    langs: { Python: 3772, HCL: 19126, Shell: 8965, Dockerfile: 1089 }, // ordem das chaves define o "Langs" do neofetch
+    stack: ["OpenTofu", "OpenStack", "k3s", "Argo CD", "Argo Rollouts", "Kyverno", "Prometheus", "Grafana", "Loki", "cert-manager", "Sigstore / cosign", "Kustomize", "GitHub Actions"],
+    desc: {
+      pt: "Plataforma GitOps de ponta a ponta em OpenStack: infra como código, Kubernetes em alta disponibilidade, supply chain assinada, SLOs e canary com rollback automático. O Git é a única fonte da verdade.",
+      en: "End-to-end GitOps platform on OpenStack: infrastructure as code, highly available Kubernetes, signed supply chain, SLOs and canary releases with automatic rollback. Git is the single source of truth."
+    },
+    highlights: {
+      pt: [
+        "Destruída e recriada do zero a partir do Git em 25 min 45 s, com cronômetro em cada etapa",
+        "Canary com Argo Rollouts abortou sozinho uma versão com 30% de erro em ~2 min, medindo só os pods novos",
+        "Só roda imagem assinada pelo CI: SBOM, SLSA, Trivy e cosign keyless, verificados pelo Kyverno na admissão",
+        "SLOs de disponibilidade e latência com alertas por burn rate em múltiplas janelas, testados com promtool no CI",
+        "k3s HA com OpenTofu, Argo CD que gerencia a si mesmo e TLS automático com cert-manager e Let's Encrypt",
+        "Incidente real com postmortem: nó sem memória, causa provada nas métricas e health check do LB corrigido"
+      ],
+      en: [
+        "Destroyed and rebuilt from Git in 25 min 45 s, with every step timed",
+        "Argo Rollouts canary aborted a release with 30% errors on its own in ~2 min, measuring only the new pods",
+        "Only CI-signed images run: SBOM, SLSA, Trivy and keyless cosign, verified by Kyverno at admission",
+        "Availability and latency SLOs with multi-window burn-rate alerts, unit-tested with promtool in CI",
+        "HA k3s with OpenTofu, a self-managing Argo CD and automatic TLS with cert-manager and Let's Encrypt",
+        "Real incident with a postmortem: out-of-memory node, root cause proven in metrics, LB health check fixed"
+      ]
+    }
+  },
+  {
     repo: "JCAMonitor",
     private: true,
     featured: true,
