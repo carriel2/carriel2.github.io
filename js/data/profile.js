@@ -9,8 +9,8 @@ window.PROFILE = {
   fullName: "Pedro Carriel de Barros",
   role: "Cloud Technical Consultant",
   headline: {
-    pt: "Pré-vendas técnica · Kubernetes · OpenStack · Linux · Terraform · FinOps",
-    en: "Technical pre-sales · Kubernetes · OpenStack · Linux · Terraform · FinOps"
+    pt: "Pré-vendas técnica · Kubernetes · GitOps · OpenStack · Linux · Terraform · FinOps",
+    en: "Technical pre-sales · Kubernetes · GitOps · OpenStack · Linux · Terraform · FinOps"
   },
   location: "Santa Bárbara d'Oeste · SP · Brasil",
   github: "carriel2",
@@ -33,11 +33,12 @@ window.PROFILE = {
   // Aparece como stack.yaml. Chave = grupo, valor = lista.
   stack: {
     cloud: ["Virtuozzo / Jelastic", "PaaS", "IaaS", "OpenStack", "KVM", "Multicloud"],
-    containers: ["Kubernetes", "Docker", "Docker Compose", "Docker Swarm", "Microservices"],
-    iac: ["Terraform", "GitHub Actions", "JPS manifests", "Git"],
+    containers: ["Kubernetes", "k3s", "Argo Rollouts", "Docker", "Docker Compose", "Docker Swarm", "Microservices"],
+    iac: ["Terraform", "OpenTofu", "Argo CD", "Kustomize", "GitHub Actions", "JPS manifests", "Git"],
+    security: ["Kyverno", "Sigstore / cosign", "SBOM / SLSA", "Trivy", "cert-manager", "Sealed Secrets"],
     os: ["RHEL", "Debian", "Ubuntu", "CentOS", "AlmaLinux", "Arch Linux", "Windows Server"],
     network: ["Routing", "VPN", "Segmentation", "Firewalls", "HAProxy", "Nginx", "Reverse proxy"],
-    observability: ["Prometheus", "Grafana", "Uptime Kuma", "TimescaleDB"],
+    observability: ["Prometheus", "Grafana", "Loki", "SLOs / burn rate", "Uptime Kuma", "TimescaleDB"],
     development: ["Python", "FastAPI", "Django", "REST APIs", "Streamlit", "Flutter", "Next.js"],
     data: ["PostgreSQL", "Oracle", "SQLAlchemy", "Pandas", "Google Sheets API"],
     business: ["High availability", "Disaster recovery", "Capacity planning", "FinOps", "Pre-sales"]
