@@ -89,6 +89,34 @@ window.PROJECTS = [
     }
   },
   {
+    repo: "gitops-k8s-lab",
+    private: false,
+    featured: true,
+    ns: "infra",
+    created: "2026-11-16",
+    pushed: "2026-11-16",
+    langs: { Python: 1414, Dockerfile: 609 },
+    stack: ["Kubernetes", "Argo CD", "Kustomize", "GitHub Actions", "Sealed Secrets", "GHCR"],
+    desc: {
+      pt: "Laboratório de GitOps em Kubernetes: uma API construída pelo GitHub Actions, entregue pelo Argo CD e executada com hardening de produção. O app é trivial de propósito; o foco é como ele é entregue e operado.",
+      en: "GitOps lab on Kubernetes: an API built by GitHub Actions, shipped by Argo CD and run with production-style hardening. The app is deliberately trivial; the point is how it is delivered and operated."
+    },
+    highlights: {
+      pt: [
+        "Promoção de versão por commit no Git e rollback por git revert",
+        "Segredos cifrados no Git com Sealed Secrets e backup semanal das chaves para S3, com RBAC mínimo",
+        "Pod Security restricted, contêiner sem root, filesystem somente leitura, probes e limites",
+        "LoadBalancer restrito ao IP do WAF, com X-Forwarded-For confiável só a partir dos nós"
+      ],
+      en: [
+        "Version promotion by Git commit and rollback by git revert",
+        "Secrets encrypted in Git with Sealed Secrets and weekly key backup to S3, with least-privilege RBAC",
+        "Pod Security restricted, non-root container, read-only filesystem, probes and limits",
+        "LoadBalancer restricted to the WAF IP, trusting X-Forwarded-For only from cluster nodes"
+      ]
+    }
+  },
+  {
     repo: "jelastic-demo",
     private: false,
     featured: true,
@@ -297,14 +325,14 @@ window.PROJECTS = [
     created: "2026-04-20",
     pushed: "2026-05-05",
     langs: { Python: 1202, Dockerfile: 554, JavaScript: 475 },
-    stack: ["Docker", "Docker Swarm", "GitHub Actions", "Node.js", "Python"],
+    stack: ["Docker", "Docker Swarm", "HAProxy", "GitHub Actions", "Node.js", "Python"],
     desc: {
       pt: "Laboratórios do treinamento Docker do básico ao avançado: namespaces e cgroups, multi-stage build, Swarm, rootless e CI/CD.",
       en: "Labs from a basic-to-advanced Docker training: namespaces and cgroups, multi-stage builds, Swarm, rootless and CI/CD."
     },
     highlights: {
-      pt: ["Imagens Alpine otimizadas com multi-stage", "Python integrado à API do Docker", "Pipeline de deploy no GitHub Actions"],
-      en: ["Optimized Alpine images with multi-stage builds", "Python talking to the Docker API", "Deploy pipeline on GitHub Actions"]
+      pt: ["Balanceamento L7 sobre L4: HAProxy na frente de containers NGINX no Swarm, com descoberta por DNS round robin", "Troubleshooting de kernel e rede com tcpdump e nftables para liberar o tráfego do Swarm sem quebrar o NAT", "Imagens Alpine otimizadas com multi-stage", "Python integrado à API do Docker", "Pipeline de deploy no GitHub Actions"],
+      en: ["L7 over L4 load balancing: HAProxy in front of NGINX containers on Swarm, discovered through DNS round robin", "Kernel and network troubleshooting with tcpdump and nftables to let Swarm traffic through without breaking NAT", "Optimized Alpine images with multi-stage builds", "Python talking to the Docker API", "Deploy pipeline on GitHub Actions"]
     }
   },
   {
