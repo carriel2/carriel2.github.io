@@ -26,14 +26,13 @@ window.NAMESPACES = {
 
 window.PROJECTS = [
   {
-    repo: "platform-gitops",
-    title: "gitops-platform",
-    private: true,
+    repo: "gitops-platform",
+    private: false,
     featured: true,
     ns: "infra",
     created: "2026-11-09",
-    pushed: "2026-11-13",
-    // platform-gitops (infra e manifests) + platform-app (app e pipeline de imagem)
+    pushed: "2026-11-19",
+    // gitops-platform (infra e manifests) + platform-app (app e pipeline de imagem)
     langs: { Python: 3772, HCL: 19126, Shell: 8965, Dockerfile: 1089 }, // ordem das chaves define o "Langs" do neofetch
     stack: ["OpenTofu", "OpenStack", "k3s", "Argo CD", "Argo Rollouts", "Kyverno", "Prometheus", "Grafana", "Loki", "cert-manager", "Sigstore / cosign", "Kustomize", "GitHub Actions"],
     desc: {
