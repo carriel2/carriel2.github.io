@@ -7,10 +7,10 @@ window.PROFILE = {
   name: "Pedro Carriel",
   surname: "de Barros",
   fullName: "Pedro Carriel de Barros",
-  role: "Cloud Technical Consultant",
+  role: "Cloud & DevOps",
   headline: {
-    pt: "Pré-vendas técnica · Kubernetes · GitOps · OpenStack · Linux · Terraform · FinOps",
-    en: "Technical pre-sales · Kubernetes · GitOps · OpenStack · Linux · Terraform · FinOps"
+    pt: "Consultor de Sistemas de TI · Kubernetes · Docker · OpenStack · Linux · GitOps · FinOps",
+    en: "IT Systems Consultant · Kubernetes · Docker · OpenStack · Linux · GitOps · FinOps"
   },
   location: "Santa Bárbara d'Oeste · SP · Brasil",
   github: "carriel2",
@@ -26,15 +26,15 @@ window.PROFILE = {
   },
 
   about: {
-    pt: "Sou consultor técnico de cloud e transformo requisitos de negócio em arquiteturas IaaS e PaaS escaláveis, seguras e com custo otimizado. Atuo em pré-vendas técnica para CTOs, Diretores de TI e Tech Leads, e na base de clientes com migrações, alta disponibilidade e FinOps. Vim do desenvolvimento Python, passei por suporte e infraestrutura, e hoje tenho visão ponta a ponta: do código ao usuário.",
-    en: "I'm a cloud technical consultant who turns business requirements into scalable, secure and cost-optimized IaaS and PaaS architectures. I do technical pre-sales for CTOs, IT Directors and Tech Leads, and work with existing customers on migrations, high availability and FinOps. I started in Python development, went through support and infrastructure, and now see the whole picture: from code to user."
+    pt: "Trabalho com Cloud & DevOps na SaveinCloud: faço consultoria e arquitetura de infraestrutura para uma carteira de 30 a 40 clientes, sobre PaaS e IaaS (OpenStack/KVM). Desenho topologias com alta disponibilidade e disaster recovery, conduzo migrações com foco em zero downtime, cuido de FinOps e apresento soluções para CTOs, diretores de TI e tech leads. Vim do desenvolvimento Python e passei um ano no suporte cloud resolvendo incidentes de produção; por isso automatizo tudo o que se repete, com Terraform, OpenTofu, Ansible, GitHub Actions e GitOps. Visão ponta a ponta: do código ao usuário.",
+    en: "I work in Cloud & DevOps at SaveinCloud: I do infrastructure consulting and architecture for a portfolio of 30 to 40 customers, on PaaS and IaaS (OpenStack/KVM). I design topologies with high availability and disaster recovery, run zero-downtime migrations, handle FinOps and present solutions to CTOs, IT directors and tech leads. I started in Python development and spent a year in cloud support fixing production incidents, so I automate everything that repeats, with Terraform, OpenTofu, Ansible, GitHub Actions and GitOps. End-to-end view: from code to user."
   },
 
   // Aparece como stack.yaml. Chave = grupo, valor = lista.
   stack: {
     cloud: ["Virtuozzo / Jelastic", "PaaS", "IaaS", "OpenStack", "KVM", "Multicloud"],
     containers: ["Kubernetes", "k3s", "Argo Rollouts", "Docker", "Docker Compose", "Docker Swarm", "Microservices"],
-    iac: ["Terraform", "OpenTofu", "Argo CD", "Kustomize", "GitHub Actions", "JPS manifests", "Git"],
+    iac: ["Terraform", "OpenTofu", "Ansible", "Argo CD", "Kustomize", "GitHub Actions", "JPS manifests", "Git"],
     security: ["Kyverno", "Sigstore / cosign", "SBOM / SLSA", "Trivy", "cert-manager", "Sealed Secrets"],
     os: ["RHEL", "Debian", "Ubuntu", "CentOS", "AlmaLinux", "Arch Linux", "Windows Server"],
     network: ["Routing", "VPN", "Segmentation", "Firewalls", "HAProxy", "Nginx", "Reverse proxy"],

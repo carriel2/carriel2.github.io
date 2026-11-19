@@ -66,6 +66,8 @@
 
     $("#stats").innerHTML = IMPACT.map((s) => {
       const n = s.value === "projects" ? U.projects.length : s.value;
+      // faixas ("30–40") aparecem como texto, sem a contagem animada
+      if (typeof n === "string") return `<div class="stat"><b>${esc(n)}</b><span>${esc(L(s.label))}</span></div>`;
       return `<div class="stat"><b data-count="${n}" data-prefix="${s.prefix || ""}" data-suffix="${s.suffix || ""}">${s.prefix || ""}${n}${s.suffix || ""}</b><span>${esc(L(s.label))}</span></div>`;
     }).join("");
   }
@@ -128,6 +130,13 @@
         <span class="mono dim">initContainer · ${esc(e.start)}–${esc(e.end)}</span>
         <h4>${esc(L(e.course))}</h4>
         <p>${esc(e.school)}${e.note ? ` <span class="dim">· ${esc(L(e.note))}</span>` : ""}</p>
+      </div>`).join("");
+
+    $("#certs").innerHTML = (window.CERTS || []).map((c) => `
+      <div class="edu-item">
+        <span class="mono dim">secret/cert · ${esc(ym(c.date))}</span>
+        <h4>${esc(typeof c.name === "string" ? c.name : L(c.name))}</h4>
+        <p>${esc(c.issuer)}</p>
       </div>`).join("");
 
     const r = $("#resume-btn");

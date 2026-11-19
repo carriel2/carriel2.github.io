@@ -47,7 +47,7 @@ Pra criar um namespace novo, adicione em `window.NAMESPACES` no mesmo arquivo.
 
 ## Carreira e formação
 
-Em [`js/data/career.js`](js/data/career.js): cargos (`CAREER`), formação (`EDUCATION`) e os números de impacto (`IMPACT`).
+Em [`js/data/career.js`](js/data/career.js): cargos (`CAREER`), formação (`EDUCATION`), certificações (`CERTS`) e os números de impacto (`IMPACT`). Faixas como `"30–40"` aparecem como texto, sem contagem animada.
 
 ## Dados pessoais e foto
 
