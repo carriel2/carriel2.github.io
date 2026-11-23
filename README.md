@@ -1,9 +1,9 @@
 # pedro@cluster — portfólio
 
-Portfólio de **Pedro Carriel de Barros**, Cloud Technical Consultant.
+Portfólio de **Pedro Carriel de Barros**, Cloud & DevOps. No ar em **[pedro.pcarriel.dev](https://pedro.pcarriel.dev)**.
 O site é um cluster: cada projeto é um pod, as categorias são namespaces e tem um terminal de verdade pra navegar.
 
-HTML, CSS e JavaScript puros. Sem build, sem dependências. Roda direto no GitHub Pages.
+HTML, CSS e JavaScript puros. Sem build, sem dependências. Roda direto no GitHub Pages, com domínio próprio definido no arquivo [`CNAME`](CNAME).
 
 ## Recursos
 
