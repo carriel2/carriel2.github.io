@@ -230,23 +230,28 @@ window.PROJECTS = [
     private: false,
     ns: "infra",
     created: "2026-05-20",
-    pushed: "2026-05-20",
-    langs: {},
-    stack: ["Arch Linux", "archiso", "XFCE4"],
+    pushed: "2026-11-26",
+    // sem os ~320 KB de CSS do tema GTK de terceiros (B00merang, GPL-3.0); só o CSS do próprio projeto
+    langs: { Shell: 18827, HCL: 6070, Python: 2156, CSS: 1122 },
+    stack: ["Arch Linux", "archiso", "XFCE", "systemd", "QEMU", "OpenTofu", "OpenStack", "Bash", "Python"],
     desc: {
-      pt: "Distribuição Linux (respin) baseada no Arch, com XFCE e visual nostálgico inspirado no Windows XP. Roda como Live CD / pendrive de resgate.",
-      en: "Arch-based Linux distribution (respin) with XFCE and a nostalgic Windows XP-inspired look. Boots as a Live CD / rescue USB."
+      pt: "Distribuição Linux (respin) baseada no Arch e montada com archiso: roda do pendrive com XFCE em português, visual retrô dos anos 2000 e kit de resgate de disco. Cada ISO é testada automaticamente no QEMU, em BIOS e UEFI.",
+      en: "Arch-based Linux distribution (respin) built with archiso: boots from a USB stick into XFCE in Brazilian Portuguese, with a retro 2000s look and a disk rescue toolkit. Every ISO is tested automatically in QEMU, on BIOS and UEFI."
     },
     highlights: {
       pt: [
-        "ISO construída do zero com archiso, seguindo The Arch Way",
-        "Leve o bastante para máquinas antigas",
-        "Temas, ícones e comportamento de janelas configurados à mão"
+        "Perfil archiso a partir do releng oficial: a ISO dá boot em BIOS e UEFI direto no desktop, com login automático",
+        "Smoke test automatizado: sobe a ISO no QEMU e confere 23 itens por dentro do sistema via QEMU Guest Agent",
+        "Visual anos 2000 com arte própria em SVG e tema de janelas de licença livre (GPL-3.0), sem material da Microsoft",
+        "Kit de resgate no menu Iniciar: GParted, TestDisk, PhotoRec, Clonezilla e ddrescue, com admin sem senha via polkit",
+        "VM de build no OpenStack com OpenTofu e KVM aninhado: ISO em ~15 min e teste de boot em ~3 min"
       ],
       en: [
-        "ISO built from scratch with archiso, following The Arch Way",
-        "Light enough for old hardware",
-        "Hand-tuned themes, icons and window behaviour"
+        "archiso profile based on the official releng: the ISO boots on BIOS and UEFI straight into the desktop with autologin",
+        "Automated smoke test: boots the ISO in QEMU and checks 23 items inside the system through the QEMU Guest Agent",
+        "2000s look with original SVG artwork and a freely licensed (GPL-3.0) window theme, with no Microsoft assets",
+        "Rescue toolkit in the Start menu: GParted, TestDisk, PhotoRec, Clonezilla and ddrescue, with password-less admin via polkit",
+        "Build VM on OpenStack with OpenTofu and nested KVM: ISO in ~15 min, boot test in ~3 min"
       ]
     }
   },
